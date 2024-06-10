@@ -123,3 +123,23 @@ buttons.forEach((button) => {
     })
 });
 
+
+
+
+// Iterating over object keys
+
+let obj = {
+    a: 1,
+    b: 2,
+    c: 3,
+    d: 4
+}
+
+for(let key in obj){
+    if(obj.hasOwnProperty(key)){
+        console.log(key, obj[key]);
+    }
+}
+
+let x = Object.keys(obj).length;
+console.log("length:", x);
