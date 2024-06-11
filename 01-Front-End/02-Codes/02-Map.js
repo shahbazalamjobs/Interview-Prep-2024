@@ -106,3 +106,46 @@ console.log(indexColor);
 const numbers = [1, 2, 3, 4, 5];
 const evenSquares = numbers.map(num => num % 2 === 0 ? num ** 2 : null).filter(num => num !== null);
 console.log(evenSquares); // [4, 16]
+
+
+
+
+// Backend problems using maps
+
+// 15. Sending notification 
+const users = [
+    { id: 1, email: 'alice@example.com' },
+    { id: 2, email: 'bob@example.com' }
+];
+
+let notifications = users.map(user => {
+    return { to: user.email, mesage: "Hello" }
+})
+
+console.log(notifications);
+
+
+// 16. Aggregating data:
+const orders = [
+    { id: 1, amount: 50 },
+    { id: 2, amount: 75 },
+    { id: 3, amount: 100 }
+];
+
+let totalAmt = orders.reduce((sum, order) => {
+    return sum + order.amount;
+}, 0);
+
+console.log(totalAmt);
+
+
+// 17. Normalising Data
+const users = [
+    { name: 'Alice', age: 25 },
+    { name: 'Bob', age: 30 }
+];
+
+const normalizedUsers = ;
+
+
+
