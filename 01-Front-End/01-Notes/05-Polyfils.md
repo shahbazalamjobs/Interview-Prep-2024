@@ -1,9 +1,5 @@
 # Polyfils
 
-- In JavaScript, "polyfills" are code snippets or libraries used to provide modern functionality in older browsers that lack support for certain features.
-- These features could be new JavaScript methods, APIs, or other functionalities introduced in newer versions of the language or browser environments.
-- Polyfills typically work by detecting whether a certain feature is supported in the current browser, and if not, they provide an alternative implementation to mimic the behavior of the missing feature.
-
 - JavaScript continually evolves and add new features every year, so older browsers dont support modern functionalities. To solve this gap, developers use two main tools: `Transpilers and Polyfils`
 
 1. **Transpilers**: It translate source code from one form to another. They can parse modern JavaScript code and rewrite it using older syntax. Eg. Babel.
@@ -19,6 +15,10 @@ var add = function(a, b) {
 ```
 
 2. **Polyfills**: Fill in missing features in older browsers by providing replacement code.
+
+- In JavaScript, "polyfills" are code snippets or libraries used to provide modern functionality in older browsers that lack support for certain features.
+- These features could be new JavaScript methods, APIs, or other functionalities introduced in newer versions of the language or browser environments.
+- Polyfills typically work by detecting whether a certain feature is supported in the current browser, and if not, they provide an alternative implementation to mimic the behavior of the missing feature.
 
 Example:
 ```javascript
