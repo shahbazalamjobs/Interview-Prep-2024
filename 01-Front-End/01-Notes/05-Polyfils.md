@@ -211,7 +211,7 @@ const result2 = printName.myBind(myName, "Palia",);
 result2("India");
 ```
 
-### Polyfill for Function.bind()
+### Polyfill for curry()
 ```js
 // Curry function polyfill
 function curry(fn) {
