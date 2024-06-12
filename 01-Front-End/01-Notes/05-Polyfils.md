@@ -210,3 +210,31 @@ Function.prototype.myBind = function(...args){
 const result2 = printName.myBind(myName, "Palia",);
 result2("India");
 ```
+
+### Polyfill for Function.bind()
+```js
+// Curry function polyfill
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function(...nextArgs) {
+        return curried.apply(this, args.concat(nextArgs));
+      };
+    }
+  };
+}
+
+// Example usage
+function add(a, b, c) {
+  return a + b + c;
+}
+
+const curriedAdd = curry(add);
+console.log(curriedAdd(1, 2, 3)); // Outputs: 6
+console.log(curriedAdd(1)(2)(3)); // Outputs: 6
+console.log(curriedAdd(1, 2)(3)); // Outputs: 6
+console.log(curriedAdd(1)(2, 3)); // Outputs: 6
+
+```
