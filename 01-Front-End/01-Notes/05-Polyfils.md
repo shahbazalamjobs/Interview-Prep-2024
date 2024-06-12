@@ -14,6 +14,42 @@ var add = function(a, b) {
 };
 ```
 
+```
+if (!Array.prototype.flat) {
+  Array.prototype.flat = function(depth = 1) {
+    // Check if the given depth is a number and non-negative
+    if (typeof depth !== "number" || depth < 0) {
+      throw new TypeError("Depth must be a non-negative number");
+    }
+
+    // Initialize the flattened array
+    const flatten = (arr, depth) => {
+      return arr.reduce((acc, val) => {
+        // If the current element is an array and depth is not zero
+        if (Array.isArray(val) && depth > 0) {
+          // Recursively flatten the array and decrease depth by 1
+          acc.push(...flatten(val, depth - 1));
+        } else {
+          // Otherwise, push the current element to the flattened array
+          acc.push(val);
+        }
+        return acc;
+      }, []);
+    };
+
+    return flatten(this, depth);
+  };
+}
+
+// Example usage
+const arr = [1, [2, [3, [4, 5]]]];
+console.log(arr.flat()); // Outputs: [1, 2, [3, [4, 5]]]
+console.log(arr.flat(1)); // Outputs: [1, 2, [3, [4, 5]]]
+console.log(arr.flat(2)); // Outputs: [1, 2, 3, [4, 5]]
+console.log(arr.flat(3)); // Outputs: [1, 2, 3, 4, 5]
+
+```
+
 2. **Polyfills**: Fill in missing features in older browsers by providing replacement code.
 
 - In JavaScript, "polyfills" are code snippets or libraries used to provide modern functionality in older browsers that lack support for certain features.
