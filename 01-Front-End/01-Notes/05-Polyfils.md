@@ -14,7 +14,7 @@ var add = function(a, b) {
 };
 ```
 
-```
+```js
 if (!Array.prototype.flat) {
   Array.prototype.flat = function(depth = 1) {
     // Check if the given depth is a number and non-negative
