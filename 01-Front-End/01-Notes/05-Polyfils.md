@@ -139,6 +139,19 @@ const arr = [1, 2, 3, 4, 5];
 console.log(myReduce(arr, add, 0));
 ```
 
+```js
+// Define the custom reduce1 method on Array.prototype
+Array.prototype.reduce1 = function(callback, initialValue) {
+  let accumulator = initialValue;
+
+  for (let i = 0; i < this.length; i++) {
+    accumulator = callback(accumulator, this[i]);
+  }
+
+  return accumulator;
+};
+```
+
 
 ---
 
