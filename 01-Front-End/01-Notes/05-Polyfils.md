@@ -261,7 +261,7 @@ Function.prototype.myBind = function(...args){
 const result2 = printName.myBind(myName, "Palia",);
 result2("India");
 ```
-```
+```js
 if (!Function.prototype.bind) {
     Function.prototype.bind = function(context, ...args) {
         // Save the reference to the original function
