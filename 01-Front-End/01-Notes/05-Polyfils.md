@@ -261,6 +261,24 @@ Function.prototype.myBind = function(...args){
 const result2 = printName.myBind(myName, "Palia",);
 result2("India");
 ```
+```
+if (!Function.prototype.bind) {
+    Function.prototype.bind = function(context, ...args) {
+        // Save the reference to the original function
+        var fn = this;
+
+        // Return a new function with the bound context and arguments
+        return function(...innerArgs) {
+            // Combine the arguments
+            const combinedArgs = args.concat(innerArgs);
+
+            // Use 'call' to invoke the function with the combined arguments
+            return fn.call(context, ...combinedArgs);
+        };
+    };
+}
+
+```
 
 ### Polyfill for curry()
 ```js
