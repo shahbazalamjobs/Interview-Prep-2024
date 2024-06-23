@@ -252,7 +252,7 @@ myAll(arr).then((res) => {
 
 ### Polyfill for Function.call()
 
-```
+```js
   
 // Call
 
