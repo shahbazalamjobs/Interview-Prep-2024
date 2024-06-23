@@ -179,19 +179,35 @@ console.log(arr.myMap(doubleVals));
 
 ### Polyfill for Array.forEach()
 ```js
-const arr = [1, 3, 4, 5, 5, 6];
 
-const logger = (item, index) => {
-  console.log(item, index);
-};
+// ForEach
 
-Array.prototype.forEach = function (callBack) {
-  for (let i = 0; i < this.length; i++) {
-    callBack(this[i], i);
+const arr = [1, 2, 3, 4, 5];
+
+
+// 1. ForEach implementation using function
+
+function forEach2(arr, callback) {
+  for (let index = 0; index < arr.length; index++) {
+    callback(arr[index], index, arr);
   }
-};
+}
 
-arr.forEach(logger);
+forEach2(arr, callback);
+
+
+// 2. ForEach polyfil 
+
+if (!Array.prototype.forEach3) {
+  Array.prototype.forEach3 = function (callback) {
+    for (let index = 0; index < this.length; index++) {
+      callback(this[index], index, this);
+    }
+  };
+}
+
+arr.forEach3(callback);
+
 ```
 
 ---
