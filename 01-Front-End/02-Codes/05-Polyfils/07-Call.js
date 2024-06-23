@@ -19,6 +19,7 @@ person1 = {
 function myCall1(obj = {}, fn, ...args) {
   obj.fn = fn;
   const result = obj.fn(...args);
+  delete obj.fn; 
 
   return result;
 }
@@ -32,8 +33,8 @@ if (!Function.prototype.call2) {
   Function.prototype.call2 = function (context, ...args) {
     context = context || globalThis;
 
-    // Create new property to avoid collision with existing property
-    const tempFn = "tempFn";
+    // Create new property to avoid collision with existing property in obj
+    const tempFn = Symbol('tempFn');  // used symbol for unique obj prop name
     context[tempFn] = fn;
 
     const result = context[tempFn](...args);
