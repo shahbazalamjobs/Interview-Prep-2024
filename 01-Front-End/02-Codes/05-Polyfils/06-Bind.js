@@ -1,54 +1,46 @@
 
 // Bind
 
-// usage
+// Usage
 
-const person = {
-  name: "Rahul",
-  age: 25,
-  company: "Google",
-  getDetails(company) {
-    console.log(`This person name is ${this.name} his age is ${this.age} and he is working in ${company}.`);
-  }
+function printName(city, country) {
+  console.log(`${this.firstName} ${this.lastName}, ${city} - ${country}`);
 }
 
-const contextPerson = {
-  name: "Anuj",
-  age: 20,
-}
+const myName = {
+  firstName: 'Ankit',
+  lastName: 'Saxena'
+};
 
-const person1 = person.getDetails.bind(contextPerson);
-person1("Twitter");
+// bind usage
+
+const boundPrintName = printName.bind(myName, "Palia");
+boundPrintName("India");
 
 
-// 1. bind Function Implementation
+// 1. Function implementation of bind
 
 function bind1(context, fn, ...args) {
 
-  return function (...innerargs) {
-    let combinedArgs = args.concat(innerargs);
-
-    return fn.call(context, ...combinedArgs);
+  return function(...innerArgs) {
+    const result = fn.call(context, ...args, ...innerArgs);
   }
 }
 
-let person2 = bind1(contextPerson, person.getDetails);
-person2("Amazon");
+bind1(myName, printName, "Pune", "India")();
 
 
-// 2. bind polyfil
+// 2. Implemetation of bind polyfil
 
 if (!Function.prototype.bind2) {
-  Function.prototype.bind2 = function(context, ...args) {
-    let callback = this;
+  Function.prototype.bind2 = function (context, ...args) {
+    const callback = this;
 
-    return function(...innerArgs) {
-      let combinedArgs = args.concat(innerArgs);
-
-      return callback.call(context, combinedArgs);
-    }
+    return function (...innerArgs) {
+      return callback.call(context, ...args, ...innerArgs);
+    };
   }
 }
 
-let person3 = person.getDetails.bind2(contextPerson, company="Microsoft");
-person3();
+const result2 = printName.bind2(myName, "Palia");
+result2("India");
