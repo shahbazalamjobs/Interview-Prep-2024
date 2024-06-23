@@ -10,8 +10,8 @@ const callback = (item) => {
 }
 
 // Using forEach to log each number to the console
-arr.forEach(function (number) {
-  console.log(number);
+arr.forEach(function (number, index) {
+  console.log(number, index);
 });
 
 
@@ -19,11 +19,10 @@ arr.forEach(function (number) {
 // 1. ForEach implementation using function
 
 function forEach2(arr, callback) {
-  for (let i = 0; i < arr.length; i++) {
-    callback(arr[i]);
+  for (let index = 0; index < arr.length; index++) {
+    callback(arr[index], index, arr);
   }
 }
-
 
 forEach2(arr, callback);
 
@@ -32,10 +31,10 @@ forEach2(arr, callback);
 
 if (!Array.prototype.forEach3) {
   Array.prototype.forEach3 = function (callback) {
-    for (let i = 0; i < this.length; i++) {
-      callback(this[i]);
+    for (let index = 0; index < this.length; index++) {
+      callback(this[index], index, this);
     }
-  }
+  };
 }
 
 arr.forEach3(callback);
