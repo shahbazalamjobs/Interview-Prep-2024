@@ -248,37 +248,166 @@ myAll(arr).then((res) => {
 });
 ```
 
-### Polyfill for Function.bind()
-```js
-Function.prototype.myBind = function(...args){
-    var callback = this,
-        ctx = args.splice(1);
-    return function(...a){        
-        callback.call(args[0], ...[...ctx, ...a]);
-    }
+---
+
+### Polyfill for Function.call()
+
+```
+  
+// Call
+
+// usage
+
+function printAge(age) {
+  console.log(`${this.name} age is ${age}`);
 }
 
-const result2 = printName.myBind(myName, "Palia",);
+person1 = {
+  name: "Shahbaz Alam",
+}
+
+// printAge.call(person1, 25);
+
+
+// 1. function implementation
+
+function myCall1(obj = {}, fn, ...args) {
+  obj.fn = fn;
+  const result = obj.fn(...args);
+  delete obj.fn; 
+
+  return result;
+}
+
+myCall1(person1, printAge, 30);
+
+
+// 2. polyfil for call
+
+if (!Function.prototype.call2) {
+  Function.prototype.call2 = function (context, ...args) {
+    context = context || globalThis;
+
+    // Create new property to avoid collision with existing property in obj
+    const tempFn = Symbol('tempFn');  // used symbol for unique obj prop name
+    context[tempFn] = fn;
+
+    const result = context[tempFn](...args);
+
+    // delete temporary property from the context object
+    delete context[tempFn];
+
+    return result;
+
+  }
+}
+
+printAge.call(person1, 28);
+```
+
+---
+
+### Polyfill for Function.apply()
+
+```js
+// apply
+
+function printAge(age) {
+  console.log(`${this.name} age is ${age}`);
+}
+
+const person1 = {
+  name: "Shahbaz",
+}
+
+// usage 
+
+// printAge.apply(person1, [26]);
+
+// 1. function implementation of apply
+function apply1(context, fn, args = []) {
+  context.fn = fn;
+  const result = context.fn(...args);
+  delete context.fn;
+
+  return result;
+}
+
+apply1(person1, printAge, [36]);
+
+// 2. apply implementation polyfil
+if(!Function.prototype.apply2) {
+  Function.prototype.apply2 = function(context, args = []) {
+    context = context || globalThis;
+
+    const tempFn =  Symbol('fn'); // Use a Symbol to ensure a unique property name
+    context[tempFn] = this;
+    const result = context[tempFn](...args);
+
+    delete context[tempFn];
+    return result;
+  }
+}
+
+printAge.apply(person1, [32]);
+```
+
+
+
+---
+
+### Polyfill for Function.bind()
+
+```js
+
+// Bind
+
+// Usage
+
+function printName(city, country) {
+  console.log(`${this.firstName} ${this.lastName}, ${city} - ${country}`);
+}
+
+const myName = {
+  firstName: 'Ankit',
+  lastName: 'Saxena'
+};
+
+// bind usage
+
+const boundPrintName = printName.bind(myName, "Palia");
+boundPrintName("India");
+
+
+// 1. Function implementation of bind
+
+function bind1(context, fn, ...args) {
+
+  return function(...innerArgs) {
+    const result = fn.call(context, ...args, ...innerArgs);
+  }
+}
+
+bind1(myName, printName, "Pune", "India")();
+
+
+// 2. Implemetation of bind polyfil
+
+if (!Function.prototype.bind2) {
+  Function.prototype.bind2 = function (context, ...args) {
+    const callback = this;
+
+    return function (...innerArgs) {
+      return callback.call(context, ...args, ...innerArgs);
+    };
+  }
+}
+
+const result2 = printName.bind2(myName, "Palia");
 result2("India");
 ```
-```js
-if (!Function.prototype.bind) {
-    Function.prototype.bind = function(context, ...args) {
-        // Save the reference to the original function
-        var fn = this;
 
-        // Return a new function with the bound context and arguments
-        return function(...innerArgs) {
-            // Combine the arguments
-            const combinedArgs = args.concat(innerArgs);
-
-            // Use 'call' to invoke the function with the combined arguments
-            return fn.call(context, ...combinedArgs);
-        };
-    };
-}
-
-```
+---
 
 ### Polyfill for curry()
 ```js
