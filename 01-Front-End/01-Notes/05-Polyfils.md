@@ -527,22 +527,6 @@ PromisePolyFill.all = (promises) => {
 
 ```
 
----
-
-### Promise.race Polyfill
-
-```js
-export function promiseRace(promisesArray) {
-  return new Promise((resolve, reject) => {
-    promisesArray.forEach((promise) => {
-      promise
-        .then(resolve) // resolve outer promise, as and when any of the input promise resolves
-        .catch(reject); // reject outer promise, as and when any of the input promise rejects
-    });
-  });
-}
-
-```
 
 ```js
 let promise1 = new Promise((resolve, reject) => {
@@ -595,3 +579,21 @@ myAll(arr).then((res) => {
 });
 ```
 
+
+
+---
+
+### Promise.race Polyfill
+
+```js
+export function promiseRace(promisesArray) {
+  return new Promise((resolve, reject) => {
+    promisesArray.forEach((promise) => {
+      promise
+        .then(resolve) // resolve outer promise, as and when any of the input promise resolves
+        .catch(reject); // reject outer promise, as and when any of the input promise rejects
+    });
+  });
+}
+
+```
