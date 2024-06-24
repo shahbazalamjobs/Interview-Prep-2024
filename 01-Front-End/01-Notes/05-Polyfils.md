@@ -401,9 +401,149 @@ console.log(curriedAdd(1)(2, 3)); // Outputs: 6
 
 ---
 
+### Polyfill for Promise()
 
+```js
+
+// source: https://roadsidecoder.hashnode.dev/javascript-interview-questions-promises-and-its-polyfills
+
+
+function PromisePolyFill(executor) {
+    let onResolve,
+        onReject,
+        fulfilled = false,
+        rejected = false,
+        called = false,
+        value;
+  
+    function resolve(v) {
+      fulfilled = true;
+      value = v;
+  
+      if (typeof onResolve === "function") { // for async
+        console.log("inside resolve")
+        onResolve(value);
+        called = true;
+      }
+    }
+  
+    function reject(reason) {
+      rejected = true;
+      value = reason;
+  
+      if (typeof onReject === "function") {
+        onReject(value);
+        called = true;
+      }
+    }
+  
+    this.then = function (callback) {
+      onResolve = callback;
+  
+      if (fulfilled && !called) { // for sync
+        console.log("inside then")
+        called = true;
+        onResolve(value);
+      }
+      return this;
+    };
+  
+    this.catch = function (callback) {
+      onReject = callback;
+  
+      if (rejected && !called) {
+        called = true;
+        onReject(value);
+      }
+      return this;
+    };
+  
+    try {
+      executor(resolve, reject);
+    } catch (error) {
+      reject(error);
+    }
+  }
+  
+  const promise1 = new PromisePolyFill((resolve, reject) => {
+    console.log(1)
+    setTimeout(() => {
+        resolve(2)
+      }, 1000);
+    console.log(3)
+  })
+  
+  promise1.then(res => {
+    console.log(res)
+  });
+  
+```
+
+### PromisePolyFill.resolve and PromisePolyFill.reject
+
+```js
+PromisePolyFill.resolve = (val) =>
+  new PromisePolyFill(function executor(resolve, _reject) {
+    resolve(val);
+  });
+
+PromisePolyFill.reject = (reason) =>
+  new PromisePolyFill(function executor(resolve, reject) {
+    reject(reason);
+  });
+```
+
+
+---
 
 ### Polyfill for Promise.all()
+```js
+
+// by roadside coder
+
+PromisePolyFill.all = (promises) => {
+  let fulfilledPromises = [],
+    result = [];
+
+  function executor(resolve, reject) {
+    promises.forEach((promise, index) =>
+      promise
+        .then((val) => {
+          fulfilledPromises.push(true);
+          result[index] = val;
+
+          if (fulfilledPromises.length === promises.length) {
+            return resolve(result);
+          }
+        })
+        .catch((error) => {
+          return reject(error);
+        })
+    );
+  }
+  return new PromisePolyFill(executor);
+};
+
+
+```
+
+---
+
+### Promise.race Polyfill
+
+```js
+export function promiseRace(promisesArray) {
+  return new Promise((resolve, reject) => {
+    promisesArray.forEach((promise) => {
+      promise
+        .then(resolve) // resolve outer promise, as and when any of the input promise resolves
+        .catch(reject); // reject outer promise, as and when any of the input promise rejects
+    });
+  });
+}
+
+```
+
 ```js
 let promise1 = new Promise((resolve, reject) => {
   setTimeout(() => {
