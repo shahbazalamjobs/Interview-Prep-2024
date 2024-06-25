@@ -70,49 +70,6 @@ console.log(add(2, 3)); // 5
 
 AMD is a module system mainly used in browser environments. It uses `define` and `require`.
 
-**Defining a Module:**
-
-```javascript
-// math.js
-define([], function() {
-  const pi = 3.14159;
-  const add = (a, b) => a + b;
-
-  return { pi, add };
-});
-```
-
-**Using a Module:**
-
-```javascript
-// main.js
-require(['./math'], function(math) {
-  console.log(math.pi); // 3.14159
-  console.log(math.add(2, 3)); // 5
-});
-```
-
-### 4. UMD (Universal Module Definition)
-
-UMD is a module system that aims to work across different environments, including browsers and Node.js. It wraps the module definition in a way that it can work with both AMD and CommonJS.
-
-```javascript
-// math.js
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory();
-  } else {
-    root.math = factory();
-  }
-}(this, function () {
-  const pi = 3.14159;
-  const add = (a, b) => a + b;
-
-  return { pi, add };
-}));
-```
 
 ### Best Practices
 
