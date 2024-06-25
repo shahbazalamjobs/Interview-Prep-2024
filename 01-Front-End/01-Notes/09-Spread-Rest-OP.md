@@ -119,3 +119,97 @@ const [first, ...rest] = array;
 console.log(first); // Output: 1
 console.log(rest); // Output: [2, 3, 4]
 ```
+
+
+---
+
+
+### Backend (Node.js) use of spread operator
+
+### 7. Copying properties from one object to another
+```javascript
+const source = { a: 1, b: 2 };
+const target = { c: 3 };
+const combined = { ...target, ...source };
+console.log(combined); // Output: { c: 3, a: 1, b: 2 }
+```
+
+### 8. Combining middleware in Express.js
+```javascript
+const express = require('express');
+const app = express();
+
+const middleware1 = (req, res, next) => { console.log('Middleware 1'); next(); };
+const middleware2 = (req, res, next) => { console.log('Middleware 2'); next(); };
+
+const combinedMiddleware = [middleware1, middleware2];
+
+app.use(...combinedMiddleware);
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
+
+### 9. Handling optional parameters in function calls
+```javascript
+const greet = (greeting, ...names) => {
+  return `${greeting}, ${names.join(' and ')}!`;
+};
+console.log(greet('Hello', 'Alice', 'Bob')); // Output: Hello, Alice and Bob!
+```
+
+### 10. Combining configurations or settings
+```javascript
+const defaultConfig = { host: 'localhost', port: 3000 };
+const userConfig = { port: 8080, debug: true };
+const finalConfig = { ...defaultConfig, ...userConfig };
+console.log(finalConfig); // Output: { host: 'localhost', port: 8080, debug: true }
+```
+
+### 11. Copying elements between arrays
+```javascript
+const sourceArray = [1, 2, 3];
+const targetArray = [...sourceArray];
+console.log(targetArray); // Output: [1, 2, 3]
+```
+
+### 12. Flattening nested arrays
+```javascript
+const nestedArray = [1, [2, 3], [4, 5]];
+const flatArray = nestedArray.flat();
+console.log(flatArray); // Output: [1, 2, 3, 4, 5]
+```
+
+### 14. Extracting subsets of data from objects
+```javascript
+const user = { id: 1, name: 'Alice', email: 'alice@example.com' };
+const { email, ...rest } = user;
+console.log(rest); // Output: { id: 1, name: 'Alice' }
+```
+
+### 15. Implementing REST API payloads for updates and inserts
+```javascript
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+let users = [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }];
+
+app.post('/users', (req, res) => {
+  const newUser = { ...req.body, id: users.length + 1 };
+  users = [...users, newUser];
+  res.status(201).json(newUser);
+});
+
+app.put('/users/:id', (req, res) => {
+  const userId = parseInt(req.params.id);
+  users = users.map(user => user.id === userId ? { ...user, ...req.body } : user);
+  res.json(users.find(user => user.id === userId));
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
+```
+
+These examples showcase unique backend-specific applications of the spread operator not already covered in the frontend examples.
