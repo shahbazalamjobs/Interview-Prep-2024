@@ -212,4 +212,16 @@ app.put('/users/:id', (req, res) => {
 app.listen(3000, () => console.log('Server running on port 3000'));
 ```
 
-These examples showcase unique backend-specific applications of the spread operator not already covered in the frontend examples.
+### 16. Updating object
+
+```js
+// Original object
+const originalObject = { name: 'Alice', age: 25, job: 'Developer', country: 'USA' };
+
+// Update the 'age' and 'job' properties
+const updatedObject = { ...originalObject, age: 26, job: 'Senior Developer' };
+
+console.log('Original Object:', originalObject); // Output: { name: 'Alice', age: 25, job: 'Developer', country: 'USA' }
+console.log('Updated Object:', updatedObject);   // Output: { name: 'Alice', age: 26, job: 'Senior Developer', country: 'USA' }
+
+```
