@@ -57,6 +57,22 @@ console.log(myMap.size); // 2
 myMap.clear();
 console.log(myMap.size); // 0
 
+// Creating a Map with multiple key-value pairs
+const myMap = new Map([
+  ['name', 'Alice'],
+  ['age', 25],
+  ['city', 'Wonderland']
+]);
+
+// Retrieving and logging values
+console.log(myMap.get('name')); // Alice
+console.log(myMap.get('age')); // 25
+console.log(myMap.get('city')); // Wonderland
+
+
+
+// Set
+
 // Creating and using a Set
 const mySet = new Set();
 
@@ -92,16 +108,5 @@ console.log(mySet.size); // 3
 mySet.clear();
 console.log(mySet.size); // 0
 
-// Creating a Map with multiple key-value pairs
-const myMap = new Map([
-  ['name', 'Alice'],
-  ['age', 25],
-  ['city', 'Wonderland']
-]);
-
-// Retrieving and logging values
-console.log(myMap.get('name')); // Alice
-console.log(myMap.get('age')); // 25
-console.log(myMap.get('city')); // Wonderland
 
 ```
