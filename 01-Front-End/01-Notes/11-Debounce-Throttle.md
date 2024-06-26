@@ -1,3 +1,4 @@
+# Debounce & Throttle
 
 - Throttle and debounce are two techniques used to control the rate at which a function is executed. They are especially useful for optimizing performance in scenarios like handling scroll events, window resizing, or keystroke events.
 
