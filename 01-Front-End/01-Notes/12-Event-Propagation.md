@@ -27,6 +27,10 @@ Understanding event propagation is crucial for managing event handling and ensur
 
 ----
 
+![image](https://github.com/shahbazalamjobs/Interview-Prep-2024/assets/125631878/5dc2b2e7-a842-48bb-9d88-672489de43bc)
+
+---
+
 ## Bubbling Phase
 
 - Example: In this example, we will create three div components and each component will have an event handler.
@@ -102,9 +106,9 @@ Understanding event propagation is crucial for managing event handling and ensur
 ## Capturing Phase
 
 - Example: In this example, we will create three div components and each component will have an event handler.
-- Click div comp 1 : alert comp 3 -> alert comp 2 -> alert comp 1
-- Click div comp 2 : alert comp 3 -> alert comp 2
-- Click div comp 3 : alert comp 3
+- Click div comp 1 : alert comp 1	
+- Click div comp 2 : alert comp 1 -> alert comp 2
+- Click div comp 3 : alert comp 1 -> alert comp 2 -> alert comp 3
 
 ```html
 <!DOCTYPE html> 
