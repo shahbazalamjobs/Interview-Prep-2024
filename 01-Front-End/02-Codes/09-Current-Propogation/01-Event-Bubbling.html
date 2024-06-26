@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation</title>
+    <style>
+        body {            
+            box-sizing:border-box;        
+        }
+
+        .outer {
+            height: 160px;
+            width: 90%;
+            padding: 20px;
+            margin: 20px; 
+            border: solid 2px green;           
+        }
+
+        .middle {
+            height: 70px;
+            width: 90%;
+            padding: 10px;
+            margin: 20px;  
+            border: solid 2px blue;           
+        }
+
+        .inner {
+            padding: 10px 20px;
+            margin: 20px; 
+            border: solid 2px orange;           
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="outer">
+        Outer
+        <form class="middle">
+            Middle
+            <button class="inner">
+                Inner
+            </button>
+        </form>
+    </div>
+    
+    <script>
+
+        const outer = document.querySelector(".outer");
+        const middle = document.querySelector(".middle");
+        const inner = document.querySelector(".inner");
+
+        function func(event){
+            alert(
+            "Div =" + event.currentTarget.className + 
+            "\nCurrent Target = " + event.currentTarget.tagName + 
+            "\nTarget = " + event.target + 
+            "\nthis =" + this.tagName
+
+            );
+        }
+
+        outer.addEventListener('click', func);
+        middle.addEventListener('click', func);
+        inner.addEventListener('click', func);
+
+        
+
+    </script>
+</body>
+</html>
