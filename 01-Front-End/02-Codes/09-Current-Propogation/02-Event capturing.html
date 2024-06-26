@@ -51,22 +51,6 @@
         const middle = document.querySelector(".middle");
         const inner = document.querySelector(".inner");
 
-        function func(event){
-            alert(
-            "Div =" + event.currentTarget.className + 
-            "\nCurrent Target = " + event.currentTarget.tagName + 
-            "\nTarget = " + event.target + 
-            "\nthis =" + this.tagName
-            );
-
-            console.log(
-                "Element =" + event.currentTarget.className + 
-                "\nCurrent Target = " + event.currentTarget.tagName + 
-                "\nTarget = " + event.target + 
-                "\nthis =" + this.tagName
-            );
-        }
-
         outer.addEventListener('click', func, true);
         middle.addEventListener('click', func, true);
         inner.addEventListener('click', func, true);
