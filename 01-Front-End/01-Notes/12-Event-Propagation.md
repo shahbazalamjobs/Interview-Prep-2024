@@ -34,9 +34,10 @@ Understanding event propagation is crucial for managing event handling and ensur
 ## Bubbling Phase
 
 - Example: In this example, we will create three div components and each component will have an event handler.
+- Click div comp 1 : alert comp 1
+- Click div comp 2 : alert comp 2 -> alert comp 1
 - Click div comp 3 : alert comp 3 -> alert comp 2 -> alert comp 1
-- Click div comp 2 : alert comp 2 -> alert comp 3
-- Click div comp 3 : aalert comp 3
+alert comp 3	
 
 ```html
 <!DOCTYPE html> 
