@@ -36,11 +36,11 @@
 <body>
 
     <div class="outer">
-        Outer
+        Outer - div
         <form class="middle">
-            Middle
+            Middle - form
             <button class="inner">
-                Inner
+                Inner - button 
             </button>
         </form>
     </div>
@@ -51,39 +51,48 @@
         const middle = document.querySelector(".middle");
         const inner = document.querySelector(".inner");
 
-        outer.addEventListener('click', func, true);
-        middle.addEventListener('click', func, true);
-        inner.addEventListener('click', func, true);
+        outer.addEventListener(
+            'click', 
+            function func(event) {
+                event.stopPropagation();
+                alert("Div");
+            },
+        );
+
+        middle.addEventListener(
+            'click',             
+            function func(event) {
+                alert("form");
+            },
+        );
+
+        inner.addEventListener(
+            'click',                     
+            function func(event) { 
+                alert("button");
+            },
+        );
+
+        
+        // output
 
         /*
-
-        Capturing event -> outer element to innermost target element
-        output when inner button clicked
+        1) When inner button is clicked        
         
-        alert 1.
+        // 1. First alert 
 
-        Element =outer
-        Current Target = DIV
-        Target = [object HTMLButtonElement]
-        this =DIV
-
-        alert 2.
-        .
-        Element =middle
-        Current Target = FORM
-        Target = [object HTMLButtonElement]
-        this =FORM
-
-        alert 3.
+        Div
+            
+        // 2. Second alert
         
-        Element =inner
-        Current Target = BUTTON
-        Target = [object HTMLButtonElement]
-        this =BUTTON
+        Form
+            
+        // 3. Third alert
+        
+        Button
 
         */
 
     </script>
 </body>
 </html>
-
