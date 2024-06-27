@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        ul {
+            display: flex;
+            list-style-type: none;
+            flex-wrap: wrap;
+            width: 400px;
+        }
+
+        li {
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            padding: 10px;
+            line-height: 60px;
+            text-align: center;
+            border: solid 2px skyblue;
+        }
+
+        button {
+            width: 80px;
+            padding: 10px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <ul id="parent-list">
+        <li class="item1">Item 1</li>
+        <li class="item2">Item 2</li>
+        <li class="item3"><b>Item 3</b></li>
+        <li class="item4">Item 4</li>
+        <li class="item5">Item 5</li>
+        <li class="item6">Item 6</li>
+        <li class="item7">Item 7</li>
+        <li class="item8">Item 8</li>
+    </ul>
+
+    <button id="add-item">Add Item</button>
+
+    <script>
+        const parentContainer = document.getElementById("parent-list");
+
+        // Main code for event delegation
+        parentContainer.addEventListener('click', function(event) {
+            let target = event.target.closest('li');
+            if (target) {
+                window.location.href += "/" + target.className;
+            }
+        });
+
+        // Extra for learning
+        document.getElementById('add-item').addEventListener('click', function(event) {
+            let newItem = document.createElement('li');
+            newItem.textContent = `Item ${document.querySelectorAll('#parent-list li').length + 1}`;
+            newItem.className = `item${document.querySelectorAll('#parent-list li').length + 1}`;
+            parentContainer.appendChild(newItem);
+        });
+
+
+    </script>
+</body>
+</html>
