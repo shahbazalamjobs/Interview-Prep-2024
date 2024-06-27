@@ -372,6 +372,25 @@ result2("India");
 ---
 
 ### Polyfill for curry()
+
+- Simple and better
+```js
+function curry(fn){
+    return function curried(...args){
+        if(args.length >= fn.length){
+            return fn(...args);
+        }
+        else {
+            return function(...innerArgs){
+                return curried(...args, ...innerArgs);
+            }
+        }
+    }
+}
+
+```
+
+- Complicated but using this and apply
 ```js
 // Curry function polyfill
 function curry(fn) {
