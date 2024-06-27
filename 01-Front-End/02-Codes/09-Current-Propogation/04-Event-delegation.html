@@ -52,6 +52,9 @@
 
         // Main code for event delegation
         parentContainer.addEventListener('click', function(event) {
+
+            // here using closes to allow the item 3 with tagName b inside li to also get selected 
+            // but if all elements were li then we could habe used eve,target.tagName('LI')
             let target = event.target.closest('li');
             if (target) {
                 window.location.href += "/" + target.className;
@@ -66,6 +69,11 @@
             parentContainer.appendChild(newItem);
         });
 
+
+        /*
+            Event Delegation: Here we add event listener to parent ul element instead of to all the child li's which would have reduced then performance. 
+            Now using event.target which selects the specific target element which was clicked and then goes to the required location.        
+        */
 
     </script>
 </body>
