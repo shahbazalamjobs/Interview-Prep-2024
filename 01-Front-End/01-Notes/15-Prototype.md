@@ -1,4 +1,8 @@
-In JavaScript, a prototype is an object from which other objects inherit properties. Each JavaScript object has a prototype linkage to another object called its prototype. Here's a basic explanation with an example:
+
+# Javascript
+
+- In JavaScript, a prototype is an object from which other objects inherit properties.
+- Each JavaScript object has a prototype linkage to another object called its prototype. Here's a basic explanation with an example:
 
 ### Example:
 
