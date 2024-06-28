@@ -44,6 +44,17 @@ Prototypes are crucial in JavaScript for implementing inheritance and enabling e
 
 ---
 
+ ## The __proto__ Property
+
+- Every object also has an internal `[[Prototype]]` property, often accessed via the `__proto__` property (though this is deprecated and should be avoided in favor of `Object.getPrototypeOf` and `Object.setPrototypeOf`).
+
+```js
+console.log(jane.__proto__ === Person.prototype); // Output: true
+console.log(Object.getPrototypeOf(jane) === Person.prototype); // Output: true
+```
+
+---
+
 ## Interview Questions
 
 Sure, here are 10 common interview questions about prototypes in JavaScript along with their answers:
