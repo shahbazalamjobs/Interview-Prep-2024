@@ -10,6 +10,27 @@
 
 */
 
+
+
+
+// protoytype
+
+let obj1 = {
+    name: "Shahbaz",
+    greet() {
+        console.log("Name of this person is " + this.name  + " and age " + age);
+    }
+}
+
+let john = Object.create(obj1);
+john.name = 'John'
+
+// john.greet(age = 25);   // Name of this person is John and age 25
+
+// Here we are creating john object using obj1 prototype
+
+
+// creating prototype function using constructor func
 function Data(name, age) {
     this.name = name;
     this.age = age;
