@@ -87,9 +87,17 @@ You can remove elements from the DOM:
   elementToRemove.parentNode.removeChild(elementToRemove);
   ```
 
-### 6. Event Handling
+## 6. Event Handling
 
-You can handle events to make your web pages interactive:
+- An event listener is a procedure or function in a computer program that waits for an event to occur. It is a key concept in event-driven programming, which is commonly used in web development to make web pages interactive. When an event happens, such as a user clicking a button or typing in a text field, the event listener responds by executing a predefined block of code.
+
+### How Event Listeners Work
+- Attaching an Event Listener: You attach an event listener to a specific element in the DOM (like a button, input field, or div) and specify the type of event you want to listen for (like 'click', 'mouseover', 'keypress', etc.).
+
+- Event Handling Function: You define a function that will be executed when the event occurs. This function is often called an event handler.
+
+- Event Object: When the event handler function is executed, it often receives an event object as an argument. This object contains details about the event, such as the type of event, the target element, and additional properties related to the event.
+
 
 - **Adding Event Listeners**:
   ```javascript
