@@ -109,6 +109,7 @@ function outer2() {
 // 2. Perforamanve overhead due to increased memory consumption and slower garbage collection
 // 3. Debugging dfficult because context in which variables created and used can beocme complex.
 
+
 // Encapsulation 
 
 function counter() {
@@ -146,7 +147,8 @@ counter3.incrementCounter();
 counter3.decrementCounter();
 
 
-// Garbage collection
-// unutilized memory freez or removed from memory 
+// Garbage Collector?
 
-
+// 1. Garbage Collector is a program in browser or in JS engine, which free up unutilised memory.
+// 2. In languages like c, c++, it is upto developers how we allocate and deallocate memory but in high level programming language like JS, most work is done by JS engine.
+// 3. So, whenever there are some unused variables, Garbage collector takes those out of memory
