@@ -159,11 +159,15 @@ counter3.decrementCounter();
 console.log("closure setTimeout output based ques");
 
 
-for (var i = 0; i < 3; i++) {
-    setTimeout(function () {
-        console.log('var:', i);
-    }, 1000 * i);
-}
+// function x1() {
+//     for (var i = 0; i < 3; i++) {
+//         setTimeout(function () {
+//             console.log('var:', i);
+//         }, 1000 * i);
+//     }
+// }
+
+// x1();
 
 // console.log('var outside:', i); 
 
@@ -179,11 +183,15 @@ var: 3
 */
 
 
-for (let i = 0; i < 3; i++) {
-    setTimeout(function () {
-        console.log('var:', i);
-    }, 1000 * i);
-}
+// function x2() {
+//     for (let i = 0; i < 3; i++) {
+//         setTimeout(function () {
+//             console.log('var:', i);
+//         }, 1000 * i);
+//     }
+// }
+
+// x2();
 
 // console.log('var outside:', i);  // reference error
 
@@ -209,3 +217,32 @@ iteration writes to its own box. When you open the boxes, you see the
  values as they were during each iteration.
 
 */
+
+
+// alternate method using var anf function
+
+function x3() {
+    for (var i = 0; i < 3; i++) {
+        function close(i) {
+            setTimeout(function () {
+                console.log('var: ', i);
+            }, i * 1000)
+        }
+        close(i)
+    }
+}
+
+x3();
+
+// alternate for above using iife 
+function printNumbers() {
+    for (var i = 0; i <= 3; i++) {
+        (function(num) {
+            setTimeout(function() {
+                console.log(num);
+            }, num * 1000);
+        })(i);
+    }
+}
+
+printNumbers();
