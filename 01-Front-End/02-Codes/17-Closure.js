@@ -133,10 +133,10 @@ function counter() {
 
 function Counter() {
     var count = 0;
-    this.incrementCounter = function(){
+    this.incrementCounter = function () {
         console.log(++count);
     }
-    this.decrementCounter = function(){
+    this.decrementCounter = function () {
         console.log(--count);
     }
 }
@@ -152,3 +152,60 @@ counter3.decrementCounter();
 // 1. Garbage Collector is a program in browser or in JS engine, which free up unutilised memory.
 // 2. In languages like c, c++, it is upto developers how we allocate and deallocate memory but in high level programming language like JS, most work is done by JS engine.
 // 3. So, whenever there are some unused variables, Garbage collector takes those out of memory
+
+
+// Closure Output based que
+
+console.log("closure setTimeout output based ques");
+
+
+for (var i = 0; i < 3; i++) {
+    setTimeout(function () {
+        console.log('var:', i);
+    }, 1000 * i);
+}
+
+// console.log('var outside:', i); 
+
+
+/*
+output:
+
+var outside: 3
+var: 3
+var: 3
+var: 3
+
+*/
+
+
+for (let i = 0; i < 3; i++) {
+    setTimeout(function () {
+        console.log('var:', i);
+    }, 1000 * i);
+}
+
+// console.log('var outside:', i);  // reference error
+
+/*
+
+var: 0
+var: 1
+var: 2
+
+*/
+
+/*
+
+Explanation
+
+Visualizing the Difference, Think of it like this:
+
+- 1. var: Imagine a single box labeled i that all iterations write to. 
+ By the time you open the box, it has the final value written by the last iteration.
+
+- 2. let: Imagine a row of boxes, each labeled i0, i1, i2, i3, i4, each 
+iteration writes to its own box. When you open the boxes, you see the
+ values as they were during each iteration.
+
+*/
